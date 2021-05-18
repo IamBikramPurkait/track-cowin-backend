@@ -92,6 +92,8 @@ def check_availability():
     #get list of users 
     doc = doc_ref.get()
 
+    print(doc.to_dict())
+
     if doc.exists:
         listofuser = doc.to_dict()['list']
 

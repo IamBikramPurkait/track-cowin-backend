@@ -112,7 +112,7 @@ def check_availability():
             if(len(availableCenters) > 0):
                 sendEmail(user,availableCenters)
 
-schedule.every(120).minutes.do(check_availability)
+schedule.every(2).minutes.do(check_availability)
 while True:
     schedule.run_pending()
     time.sleep(1)

@@ -8,7 +8,11 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import schedule
 import time
+from fake_useragent import UserAgent
 
+
+temp_user_agent = UserAgent()
+browser_header = {'User-Agent': temp_user_agent.random}
 
 # Use a service account
 cred = credentials.Certificate('serviceAccount.json')
@@ -102,7 +106,7 @@ def check_availability():
                 # get data statewise 
                 URL ="https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id="+str(user['district'])+"&date="+str(formateddate)
                 #requesting data
-                r = requests.get(URL,headers=headers)
+                r = requests.get(URL,headers=browser_header)
                 print(r.status_code)
                 if r.status_code == 200:
                     sessions = r.json()["sessions"]
@@ -121,4 +125,4 @@ def check_availability():
 
 while True:
     check_availability()
-    time.sleep(100)
+    # time.sleep(100)

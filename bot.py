@@ -115,6 +115,8 @@ def check_availability():
 # schedule.every(2).minutes.do(check_availability)
 # while True:
 #     schedule.run_pending()
-#     time.sleep(1)
+    # time.sleep(1)
 
-check_availability()
+while True:
+    check_availability()
+    time.sleep(100)

@@ -92,8 +92,6 @@ def check_availability():
     #get list of users 
     doc = doc_ref.get()
 
-    print(doc.to_dict())
-
     if doc.exists:
         listofuser = doc.to_dict()['list']
 
@@ -105,6 +103,7 @@ def check_availability():
                 URL ="https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id="+str(user['district'])+"&date="+str(formateddate)
                 #requesting data
                 r = requests.get(URL,headers=headers)
+                print(r.json())
                 if r.status_code == 200:
                     sessions = r.json()["sessions"]
                     if(len(sessions) > 0):

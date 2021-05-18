@@ -103,7 +103,7 @@ def check_availability():
                 URL ="https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByDistrict?district_id="+str(user['district'])+"&date="+str(formateddate)
                 #requesting data
                 r = requests.get(URL,headers=headers)
-                print(r.json())
+                print(r.status_code)
                 if r.status_code == 200:
                     sessions = r.json()["sessions"]
                     if(len(sessions) > 0):
@@ -111,6 +111,7 @@ def check_availability():
                             if(session["available_capacity"] > 0):
                                 availableCenters.append(session)
             if(len(availableCenters) > 0):
+                print("available")
                 sendEmail(user,availableCenters)
 
 # schedule.every(2).minutes.do(check_availability)

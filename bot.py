@@ -9,6 +9,7 @@ from email.mime.text import MIMEText
 import schedule
 import time
 from fake_useragent import UserAgent
+from decouple import config
 
 
 temp_user_agent = UserAgent()
@@ -26,8 +27,8 @@ formateddate = str(today.day)+'-'+str(today.month)+'-'+str(today.year)
 
 #function to send email 
 def sendEmail(user,availableCenters):
-    gmail_user = "aritrabasu71@gmail.com"
-    gmail_pwd = "runabasu71"
+    gmail_user = config('gmail_user',default='')
+    gmail_pwd = config('gmail_pwd',default='')
     TO = user['email']
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
